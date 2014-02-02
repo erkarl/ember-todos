@@ -1,0 +1,17 @@
+@import 'bootstrap';
+
+@keyframes domChanged { from { background: yellow; } }
+@-webkit-keyframes domChanged { from { background: yellow; } }
+
+.ember-view { 
+    animation: domChanged 1s; 
+    -webkit-animation: domChanged 1s; 
+    height: 100%;
+}
+
+html,
+body {
+  font-size: 12px;
+  margin: 20px;
+  // height: 100%;
+}

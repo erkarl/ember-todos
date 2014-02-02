@@ -1,12 +1,6 @@
-<ul>
-{{#each model}}
-  {{id}}
-  {{task}}
-{{/each}}
 <h1>Add todo</h1>
 <form>
 {{input type="text" placeholder="What needs to be..." value=task class="form-control"}}<br>
 {{input type="checkbox" value=is_done class="form-control"}}<br>
-<button {{action 'createTodo'}} class="btn btn-primary">Save <span class="glyphicon glyphicon-ok"></span></button>
+<button {{action 'someAction'}} class="btn btn-primary">Save <span class="glyphicon glyphicon-ok"></span></button>
 </form>
-</ul>
