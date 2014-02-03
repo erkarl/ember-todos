@@ -1,12 +1,62 @@
-<ul>
-{{#each model}}
-  {{id}}
-  {{task}}
-{{/each}}
-<h1>Add todo</h1>
-<form>
-{{input type="text" placeholder="What needs to be..." value=task class="form-control"}}<br>
-{{input type="checkbox" value=is_done class="form-control"}}<br>
-<button {{action 'createTodo'}} class="btn btn-primary">Save <span class="glyphicon glyphicon-ok"></span></button>
-</form>
-</ul>
+<div class="row separatorLineRow">
+  <hr/>
+</div><!-- /.row separatorLineRow -->
+
+<div class="row center-block inputRow">
+
+  <form class="form-horizontal" {{action 'createTodo' on='submit'}}>
+
+    <div class="col-xs-9">
+
+      {{input type="text" class="form-control" placeholder="What needs to be done?" value=task}}
+
+    </div><!-- /.col-xs-9 -->
+
+    <div class="col-xs-3">
+
+      <button class="btn btn-btn-large btn-block">Add Todo</button>
+
+    </div><!-- /.col-xs-3 -->
+
+  </form><!-- /.form-horizontal -->
+
+</div><!-- /.row inputRow -->
+
+<div class="row todosRow">
+
+  <br>
+
+  <div class="table-responsive">
+
+    <table class="table table-striped">
+      <tbody>
+        {{#each itemController='todo'}}
+          <tr>
+            <td>
+              {{input type="checkbox" checked=is_done}}
+              {{task}}
+              <a href="#" class="pull-right" {{action 'deleteTodo' this}}><span class="pull-right glyphicon glyphicon-remove" ></span></a>
+              <a href="#" class="pull-right" {{action 'editTodo' this}}><span class="pull-right glyphicon glyphicon-edit" ></span></a>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table><!-- /.table table-striped -->
+
+  </div><!-- /.table-responsive -->
+
+  <hr/>
+
+  <div class="col-xs-3 pull-left remainingTodosContainer">
+
+    {{totalUnfinished}} {{todoInflection}} left
+
+  </div><!-- /.col-xs-3 pull-left remainingTodosContainer -->
+
+  <div class="col-xs-3 pull-right markAllAsCompleteContainer">
+
+    <a href="#" class="pull-right" {{action 'markAllTodosComplete'}}>Mark all as complete</a>
+
+  </div><!-- /.col-xs-3 pull-right markAllAsCompleteContainer -->
+
+</div><!-- end todosRow -->
