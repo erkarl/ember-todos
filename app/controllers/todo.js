@@ -1,4 +1,5 @@
 export default Ember.ObjectController.extend({
+  isEdit: false,
 
   is_done: function(key, value){
     console.log('is done changed!');
@@ -36,6 +37,17 @@ export default Ember.ObjectController.extend({
       };
       // TODO: Figure out why destroyRecord isn't returning a promise
       todo.destroyRecord(onTodoDeleteSuccess, onTodoDeleteFailure);
+    },
+
+    editTodo: function(){
+      this.set('isEdit', true);
+    },
+
+    acceptEdit: function(){
+      this.set('isEdit', false);
+      var model = this.get('model');
+      model.save();
     }
+
   }
 });

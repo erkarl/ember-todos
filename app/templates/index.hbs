@@ -26,24 +26,41 @@
 
   <br>
 
-  <div class="table-responsive">
+  <div class="todosList">
 
-    <table class="table table-striped">
-      <tbody>
-        {{#each itemController='todo'}}
-          <tr>
-            <td>
-              {{input type="checkbox" checked=is_done}}
+    <ul>
+      {{#each itemController='todo'}}
+
+        <li class="todoListItem" {{action 'editTodo' on='doubleClick'}}>
+
+          {{input type="checkbox" class="todoCheckbox" checked=is_done}}
+
+          <span id="todoTask" {{bind-attr class="is_done:completedTodo"}}>
+
+            {{#if isEdit}}
+
+              {{edit-todo class='form-control' value=task focus-out='acceptEdit' insert-newline='acceptEdit'}}
+
+            {{else}}
               {{task}}
-              <a href="#" class="pull-right" {{action 'deleteTodo' this}}><span class="pull-right glyphicon glyphicon-remove" ></span></a>
-              <a href="#" class="pull-right" {{action 'editTodo' this}}><span class="pull-right glyphicon glyphicon-edit" ></span></a>
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table><!-- /.table table-striped -->
+            {{/if}}
 
-  </div><!-- /.table-responsive -->
+          </span>
+
+          <div class="hoverControls pull-right">
+
+            <span {{action 'editTodo' this}} class="glyphicon glyphicon-edit" ></span>
+            <span {{action 'deleteTodo' this}} class="glyphicon glyphicon-remove" ></span>
+
+          </div><!-- /.hoverControls pull-right -->
+
+        </li><!-- /.todoListItem -->
+
+      {{/each}}
+
+    </ul>
+
+  </div><!-- /.todosList -->
 
   <hr/>
 
