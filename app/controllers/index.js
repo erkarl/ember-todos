@@ -13,6 +13,8 @@ export default Ember.ArrayController.extend(Ember.Validations.Mixin, {
     }
   }.property('totalUnfinished'),
 
+
+
   actions: {
     createTodo: function(){
       var hash = this.getProperties('task');
@@ -33,10 +35,13 @@ export default Ember.ArrayController.extend(Ember.Validations.Mixin, {
       };
       this.validate().then(onValidateSuccess, onValidateFailure);
     },
+
     markAllTodosComplete: function(){
       console.log('mark everything complete');
       this.setEach('is_done', true);
+      this.content.invoke('save');
     }
+
   },
 
   validations: {

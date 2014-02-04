@@ -21,9 +21,11 @@ export default Ember.ObjectController.extend(Ember.Validations.Mixin, {
     }
   }.property('model.is_done'),
 
-  updateTodo: function(){
-    console.log('update record');
-  },
+  /*
+  saveWhenCompleted: function () {
+		this.get('model').save();
+	}.observes('model.is_done'),
+  */
 
   actions: {
     deleteTodo: function(todo){
