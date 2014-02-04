@@ -21,12 +21,6 @@ export default Ember.ObjectController.extend(Ember.Validations.Mixin, {
     }
   }.property('model.is_done'),
 
-  /*
-  saveWhenCompleted: function () {
-		this.get('model').save();
-	}.observes('model.is_done'),
-  */
-
   actions: {
     deleteTodo: function(todo){
       console.log('Delete TODO');
@@ -36,8 +30,7 @@ export default Ember.ObjectController.extend(Ember.Validations.Mixin, {
       var onTodoDeleteFailure = function(){
         console.log('Failed deleting TODO');
       };
-      // TODO: Figure out why destroyRecord isn't returning a promise
-      todo.destroyRecord(onTodoDeleteSuccess, onTodoDeleteFailure);
+      todo.destroyRecord().then(onTodoDeleteSuccess, onTodoDeleteFailure);
     },
 
     editTodo: function(){
@@ -50,7 +43,13 @@ export default Ember.ObjectController.extend(Ember.Validations.Mixin, {
         console.log('Validate Success');
         _this.set('isEdit', false);
         var model = _this.get('model');
-        model.save();
+        var onAcceptEditSuccess = function(){
+          console.log('Successfully edited todo.');
+        };
+        var onAcceptEditFailure = function(){
+          console.log('Failed editing todo');
+        };
+        model.save().then(onAcceptEditSuccess, onAcceptEditFailure);
       };
       var onValidateFailure = function(){
         console.log('Validation failure');

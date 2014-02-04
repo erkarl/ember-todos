@@ -38,8 +38,15 @@ export default Ember.ArrayController.extend(Ember.Validations.Mixin, {
 
     markAllTodosComplete: function(){
       console.log('mark everything complete');
+      var _this = this;
       this.setEach('is_done', true);
-      this.content.invoke('save');
+      var onMarkAllDoneSuccess = function(){
+        console.log('Successfully marked all complete.');
+      };
+      var onMarkAllDoneFailure = function(){
+        console.log('Failed marking everything complete.');
+      };
+      Ember.RSVP.all(this.content.invoke('save')).then(onMarkAllDoneSuccess, onMarkAllDoneFailure);
     }
 
   },
