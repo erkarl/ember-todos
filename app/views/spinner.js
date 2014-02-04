@@ -1,7 +1,6 @@
 var SpinnerView = Ember.View.extend({
     layoutName: 'views/spinner',
     didInsertElement: function(){
-      console.log('Insert spinner here');
       var opts = {
         lines: 15, // The number of lines to draw
         length: 24, // The length of each line

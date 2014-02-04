@@ -7,6 +7,9 @@
     "Ember": true,
     "Em": true,
     "DS": true,
+    "Spinner": true,
+    "console": true,
+    "alert": true,
     "$": true
   },
   "node" : false,

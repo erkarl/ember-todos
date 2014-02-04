@@ -2,8 +2,6 @@ export default Ember.ObjectController.extend(Ember.Validations.Mixin, {
   isEdit: false,
 
   is_done: function(key, value){
-    console.log('is done changed!');
-    console.log('value changed: ' + value);
     var model = this.get('model');
 
     if(value === undefined){
@@ -11,10 +9,10 @@ export default Ember.ObjectController.extend(Ember.Validations.Mixin, {
     } else {
       model.set('is_done', value);
       var onIsDoneUpdateSuccess = function(){
-        console.log('Successfully updated is_done value.');
+        // console.log('Successfully updated is_done value.');
       };
       var onIsDoneUpdateFailure = function(){
-        console.log('Failed to update is_done value.');
+        alert('Failed to update is_done value.');
       };
       model.save(onIsDoneUpdateSuccess, onIsDoneUpdateFailure);
       return value;
@@ -25,10 +23,10 @@ export default Ember.ObjectController.extend(Ember.Validations.Mixin, {
     deleteTodo: function(todo){
       console.log('Delete TODO');
       var onTodoDeleteSuccess = function(){
-        console.log('Successfully deleted TODO');
+        // console.log('Successfully deleted TODO');
       };
       var onTodoDeleteFailure = function(){
-        console.log('Failed deleting TODO');
+        alert('Failed deleting TODO');
       };
       todo.destroyRecord().then(onTodoDeleteSuccess, onTodoDeleteFailure);
     },
@@ -40,14 +38,14 @@ export default Ember.ObjectController.extend(Ember.Validations.Mixin, {
     acceptEdit: function(){
       var _this = this;
       var onValidateSuccess = function(){
-        console.log('Validate Success');
+        // console.log('Validate Success');
         _this.set('isEdit', false);
         var model = _this.get('model');
         var onAcceptEditSuccess = function(){
-          console.log('Successfully edited todo.');
+          // console.log('Successfully edited todo.');
         };
         var onAcceptEditFailure = function(){
-          console.log('Failed editing todo');
+          alert('Failed editing todo');
         };
         model.save().then(onAcceptEditSuccess, onAcceptEditFailure);
       };

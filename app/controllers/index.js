@@ -21,13 +21,11 @@ export default Ember.ArrayController.extend(Ember.Validations.Mixin, {
       var _this = this;
       var onCreateTodoSuccess = function(){
         _this.setProperties({ task: '' });
-        console.log('Successfully added todo.');
       };
       var onCreateTodoFailure = function(){
         alert('Failed adding todo!');
       };
       var onValidateSuccess = function(){
-        console.log('Validation success.');
         _this.store.createRecord('todo', hash).save().then(onCreateTodoSuccess, onCreateTodoFailure);
       };
       var onValidateFailure = function(){
@@ -37,14 +35,13 @@ export default Ember.ArrayController.extend(Ember.Validations.Mixin, {
     },
 
     markAllTodosComplete: function(){
-      console.log('mark everything complete');
       var _this = this;
       this.setEach('is_done', true);
       var onMarkAllDoneSuccess = function(){
-        console.log('Successfully marked all complete.');
+        // console.log('Successfully marked all complete.');
       };
       var onMarkAllDoneFailure = function(){
-        console.log('Failed marking everything complete.');
+        alert('Failed marking everything complete.');
       };
       Ember.RSVP.all(this.content.invoke('save')).then(onMarkAllDoneSuccess, onMarkAllDoneFailure);
     }
