@@ -1,4 +1,4 @@
-export default Ember.ObjectController.extend({
+export default Ember.ObjectController.extend(Ember.Validations.Mixin, {
   isEdit: false,
 
   is_done: function(key, value){
@@ -16,7 +16,6 @@ export default Ember.ObjectController.extend({
       var onIsDoneUpdateFailure = function(){
         console.log('Failed to update is_done value.');
       };
-      console.log('saving new values');
       model.save(onIsDoneUpdateSuccess, onIsDoneUpdateFailure);
       return value;
     }
@@ -44,10 +43,25 @@ export default Ember.ObjectController.extend({
     },
 
     acceptEdit: function(){
-      this.set('isEdit', false);
-      var model = this.get('model');
-      model.save();
+      var _this = this;
+      var onValidateSuccess = function(){
+        console.log('Validate Success');
+        _this.set('isEdit', false);
+        var model = _this.get('model');
+        model.save();
+      };
+      var onValidateFailure = function(){
+        console.log('Validation failure');
+      };
+      this.validate().then(onValidateSuccess, onValidateFailure);
     }
 
+  },
+
+  validations: {
+    task:{
+      length: { minimum: 5, maximum: 255, messages: { tooShort: 'Task should be longer than 4 characters.', tooLong: 'Task should be less than 256 characters' } }
+    }
   }
+
 });
