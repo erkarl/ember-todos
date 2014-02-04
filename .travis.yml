@@ -1,7 +1,14 @@
 language: node_js
 node_js:
-  - 0.10
+- 0.1
 before_script:
-  - npm install -g grunt-cli
-  - npm install -g bower
-  - bower install
+- npm install -g grunt-cli
+- npm install -g bower
+- bower install
+deploy:
+  provider: heroku
+  api_key:
+    secure: go4WPAbSqvgL9dxWwKUCPK/7txkbFYT9SIViEBD0OvswT+4IoE6G9agWQsG7ILmyQ6QZABDxLMztFdTHndEBTzf9TF9QE6d4Dmvx81c6ZWQKvxHNNOiSBpPY0F3w1K7abkTeRNjNYB2Eaky/dIMkMfp+QGU+nUBCbskBhBiZB+4=
+  app: todoland
+  on:
+    repo: erkarl/ember-todos
