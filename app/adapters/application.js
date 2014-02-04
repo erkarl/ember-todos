@@ -7,5 +7,5 @@ export default DS.RESTAdapter.extend({
 
 // Production
 export default DS.RESTAdapter.extend({
-  host: 'http://flask-restful-todo.herokuapp.com/api'
+  host: 'http://todo-api.karlranna.com/api'
 });
