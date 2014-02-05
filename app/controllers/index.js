@@ -1,5 +1,8 @@
 export default Ember.ArrayController.extend(Ember.Validations.Mixin, {
 
+  sortProperties: ['is_done'],
+  sortAscending: true,
+
   totalUnfinished: function() {
     return this.filterBy('is_done', false).get('length');
   }.property('@each.is_done'),
